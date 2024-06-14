@@ -20,7 +20,9 @@
                     </div>
                     <div class="card-content">
                         <div class="card-body">
-                            <form class="form form-horizontal">
+                            <form class="form form-horizontal" action="{{ route('update.merek', [$showMerek->id]) }}"
+                                method="post">
+                                @csrf
                                 <div class="form-body">
                                     <div class="row">
                                         <div class="col-md-4">
@@ -28,26 +30,22 @@
                                         </div>
                                         <div class="col-md-8 form-group">
                                             <input type="text" id="first-name-horizontal" class="form-control"
-                                                name="fname" placeholder="First Name">
+                                                name="nama" value="{{ $showMerek->nama }}" placeholder="First Name">
                                         </div>
                                         <div class="col-md-4">
                                             <label for="file-horizontal">LogoMerek</label>
                                         </div>
                                         <div class="col-md-8 form-group">
-                                            <input class="form-control" type="file" id="formFile">
+                                            <input class="form-control" name="gambarimage" type="file" id="formFile">
                                         </div>
                                         <div class="col-md-4">
                                             <label for="tipe-horizontal">Tipe Barang</label>
                                         </div>
                                         <div class="col-md-8 form-group">
-                                            <select multiple class="form-select" id="tipe-horizontal" name="tipe[]"
-                                                size="5">
-                                                <option value="1">Tipe 1</option>
-                                                <option value="2">Tipe 2</option>
-                                                <option value="3">Tipe 3</option>
-                                                <option value="4">Tipe 4</option>
-                                                <option value="5">Tipe 5</option>
-                                                <!-- Add more options as needed -->
+                                            <select multiple id="dd" name="tipe_id[]" class="form-control">
+                                                @foreach ($showTipeMerek as $a)
+                                                    <option value="{{ $a->id }}">{{ $a->nama_tipe }}</option>
+                                                @endforeach
                                             </select>
                                         </div>
                                         <div class="col-sm-12 d-flex justify-content-end">
@@ -63,4 +61,20 @@
             </section>
         </div>
     </div>
+    <script>
+        const multiSelectWithoutCtrl = (elemSelector) => {
+            let options = [].slice.call(document.querySelectorAll(`${elemSelector} option`));
+            options.forEach(function(element) {
+                element.addEventListener("mousedown",
+                    function(e) {
+                        e.preventDefault();
+                        element.parentElement.focus();
+                        this.selected = !this.selected;
+                        return false;
+                    }, false);
+            });
+        }
+
+        multiSelectWithoutCtrl('#dd')
+    </script>
 @endsection

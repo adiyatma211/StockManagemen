@@ -21,7 +21,9 @@
 </head>
 
 <body>
+
     <script src="{{ asset('dist/assets/static/js/initTheme.js') }}"></script>
+
     <div id="app">
         <div id="sidebar">
             <div class="sidebar-wrapper active">
@@ -115,6 +117,7 @@
                     </ul>
                 </div>
             </div>
+            @include('sweetalert::alert')
         </div>
         @yield('konten')
         <footer>

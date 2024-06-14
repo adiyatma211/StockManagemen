@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Merek;
+use App\Models\TipeMerek;
 use Illuminate\Http\Request;
 
 class PagesController extends Controller
@@ -13,12 +15,19 @@ class PagesController extends Controller
 
     public function merek()
     {
-        return view('dashboard.merek.v_merek');
+        $showTipeMerek = Merek::all();
+        return view('dashboard.merek.v_merek',([
+            'showTipeMerek' => $showTipeMerek
+        ]));
     }
 
     public function tipemerek()
     {
-        return view('dashboard.tipemerek.v_tipemerek');
+
+        $ShowTipeMerek = TipeMerek::all();
+        return view('dashboard.tipemerek.v_tipemerek',([
+            'ShowTipeMerek' => $ShowTipeMerek
+        ]));
     }
 
     public function laporan()

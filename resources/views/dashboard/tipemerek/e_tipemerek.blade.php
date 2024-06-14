@@ -21,7 +21,9 @@
                     </div>
                     <div class="card-content">
                         <div class="card-body">
-                            <form class="form form-horizontal">
+                            <form class="form form-horizontal" action="{{ route('update.tipemerek', [$tipeMerek->id]) }}"
+                                method="post" enctype="multipart/form-data">
+                                @csrf
                                 <div class="form-body">
                                     <div class="row">
                                         <div class="col-md-4">
@@ -29,21 +31,21 @@
                                         </div>
                                         <div class="col-md-8 form-group">
                                             <input type="text" id="first-name-horizontal" class="form-control"
-                                                name="fname" placeholder="Kintakun">
+                                                name="nama_tipe" value="{{ $tipeMerek->nama_tipe }}" placeholder="Kintakun">
                                         </div>
                                         <div class="col-md-4">
                                             <label for="first-name-horizontal">Ukuran</label>
                                         </div>
                                         <div class="col-md-8 form-group">
                                             <input type="text" id="first-name-horizontal" class="form-control"
-                                                name="fname" placeholder="200x200">
+                                                name="ukuran" value="{{ $tipeMerek->ukuran }}" placeholder="200x200">
                                         </div>
                                         <div class="col-md-4">
                                             <label for="first-name-horizontal">Stok</label>
                                         </div>
                                         <div class="col-md-8 form-group">
                                             <input type="text" id="first-name-horizontal" class="form-control"
-                                                name="fname" placeholder="20">
+                                                name="stok" value="{{ $tipeMerek->stok }}" placeholder="20">
                                         </div>
                                         <div class="col-sm-12 d-flex justify-content-end">
                                             <button type="submit" class="btn btn-primary me-1 mb-1">Submit</button>

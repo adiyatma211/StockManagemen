@@ -19,7 +19,9 @@
                     </div>
                     <div class="card-content">
                         <div class="card-body">
-                            <form class="form form-horizontal">
+                            <form class="form form-horizontal" method="POST" action="{{ route('simpan.merek') }}"
+                                enctype="multipart/form-data">
+                                @csrf
                                 <div class="form-body">
                                     <div class="row">
                                         <div class="col-md-4">
@@ -27,27 +29,52 @@
                                         </div>
                                         <div class="col-md-8 form-group">
                                             <input type="text" id="first-name-horizontal" class="form-control"
-                                                name="fname" placeholder="First Name">
+                                                name="nama" placeholder="First Name">
                                         </div>
                                         <div class="col-md-4">
                                             <label for="file-horizontal">LogoMerek</label>
                                         </div>
                                         <div class="col-md-8 form-group">
-                                            {{-- <label for="formFile" class="form-label">Default file input example</label> --}}
-                                            <input class="form-control" type="file" id="formFile">
+                                            <input class="form-control" type="file" name="gambarimage" id="formFile">
                                         </div>
-                                        <div class="col-sm-12 d-flex justify-content-end">
-                                            <button type="submit" class="btn btn-primary me-1 mb-1">Submit</button>
-                                            <button type="reset" class="btn btn-light-secondary me-1 mb-1">Reset</button>
+                                        <div class="col-md-4">
+                                            <label for="first-name-horizontal">Tipe Barang</label>
                                         </div>
-                                    </div>
-                                </div>
+                                        <div class="col-md-8 form-group">
+                                            <select multiple id="dd" name="tipe_id[]" class="form-control">
+                                                @foreach ($showTipeMerek as $a)
+                                                    <option value="{{ $a->id }}">{{ $a->nama_tipe }}</option>
+                                                @endforeach
+                                            </select>
+                                            <div class="col-sm-12 d-flex justify-content-end">
+                                                <button type="submit" class="btn btn-primary me-1 mb-1">Submit</button>
+                                                <button type="reset"
+                                                    class="btn btn-light-secondary me-1 mb-1">Reset</button>
+                                            </div>
+                                        </div>
                             </form>
                         </div>
                     </div>
                 </div>
         </div>
     </div>
+    </div>
     </section>
     </div>
+    <script>
+        const multiSelectWithoutCtrl = (elemSelector) => {
+            let options = [].slice.call(document.querySelectorAll(`${elemSelector} option`));
+            options.forEach(function(element) {
+                element.addEventListener("mousedown",
+                    function(e) {
+                        e.preventDefault();
+                        element.parentElement.focus();
+                        this.selected = !this.selected;
+                        return false;
+                    }, false);
+            });
+        }
+
+        multiSelectWithoutCtrl('#dd')
+    </script>
 @endsection

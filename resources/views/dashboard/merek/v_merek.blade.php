@@ -30,28 +30,37 @@
                                         <th>No</th>
                                         <th>Name</th>
                                         <th>Nama Tipe</th>
-                                        <th>Ukuran</th>
-                                        <th>Stok</th>
+                                        <th>Gambar</th>
                                         <th>Status</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>Graiden</td>
-                                        <td>vehicula.aliquet@semconsequat.co.uk</td>
-                                        <td>076 4820 8838</td>
-                                        <td>Offenburg</td>
-                                        <td>
-                                            <div class="mb-3">
-                                                <a href="{{ route('edit.merek') }}" class="btn icon icon-left btn-info"><i
-                                                        data-feather="edit"></i> Edit</a>
-                                                <a href="#" class="btn icon icon-left btn-danger"><i
-                                                        data-feather="alert-circle"></i>
-                                                    Delete</a>
-                                            </div>
-                                        </td>
-                                    </tr>
+                                    @foreach ($showTipeMerek as $key => $a)
+                                        <tr>
+                                            <td>{{ $key + 1 }}</td>
+                                            <td>{{ $a->nama }}</td>
+                                            <td>{{ $a->TipeMerek->nama_tipe }}</td>
+                                            <td>{{ $a->gambarimage }}</td>
+                                            <td>
+                                                <div class="mb-3">
+                                                    <a href="{{ route('edit.merek', [$a->id]) }}"
+                                                        class="btn icon icon-left btn-info">
+                                                        <i data-feather="edit"></i> Edit
+                                                    </a>
+                                                    <form action="{{ route('delete.merek', [$a->id]) }}" method="POST"
+                                                        class="d-inline">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button type="submit" class="btn icon icon-left btn-danger"
+                                                            data-confirm-delete="true">
+                                                            <i data-feather="alert-circle"></i>
+                                                            Delete
+                                                        </button>
+                                                    </form>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    @endforeach
                                 </tbody>
                             </table>
                         </div>
@@ -59,4 +68,5 @@
                 </div>
             </section>
         </div>
-    @endsection
+    </div>
+@endsection
