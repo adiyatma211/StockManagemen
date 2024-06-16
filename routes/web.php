@@ -48,7 +48,13 @@ Route::middleware('auth')->group(function () {
 // Manageme Laporan
 Route::middleware('auth')->group(function () {
     Route::get('/laporan/create', [LaporanController::class, 'index'])->name('index.laporan');
-    Route::get('/laporan/edit', [LaporanController::class, 'editlaporan'])->name('edit.laporan');
+    Route::post('/laporan/create/save', [LaporanController::class, 'create'])->name('simpan.laporan');
+    Route::get('/laporan/edit/{id}', [LaporanController::class, 'editlaporan'])->name('edit.laporan');
+    Route::post('/laporan/edit/save/{id}', [LaporanController::class, 'edit'])->name('update.laporan');
+    Route::delete('/laporan/destroy/{id}', [LaporanController::class, 'destroy'])->name('delete.laporan');
+
 });
+
+// ============================================WEB_USER_LANDING_PAGE=====================================================================================
 
 Auth::routes();

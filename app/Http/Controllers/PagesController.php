@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Merek;
 use App\Models\TipeMerek;
+use App\Models\ReportHarian;
 use Illuminate\Http\Request;
 
 class PagesController extends Controller
@@ -32,7 +33,11 @@ class PagesController extends Controller
 
     public function laporan()
     {
-        return view('dashboard.reports.v_laporan');
+        $ShowLaporan = ReportHarian::all();
+        return view('dashboard.reports.v_laporan',
+    [
+        'ShowLaporan' => $ShowLaporan
+    ]);
     }
 
 }

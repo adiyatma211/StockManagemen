@@ -39,25 +39,35 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>Rezha</td>
-                                        <td>Kintakunk</td>
-                                        <td>45</td>
-                                        <td>20</td>
-                                        <td>10</td>
-                                        <td>15</td>
-                                        <td>09-06-2024</td>
-                                        <td>
-                                            <div class="mb-3">
-                                                <a href="{{ route('edit.laporan') }}" class="btn icon icon-left btn-info"><i
-                                                        data-feather="edit"></i> Edit</a>
-                                                <a href="#" class="btn icon icon-left btn-danger"><i
-                                                        data-feather="alert-circle"></i>
-                                                    Delete</a>
-                                            </div>
-                                        </td>
-                                    </tr>
+                                    @foreach ($ShowLaporan as $key => $a)
+                                        <tr>
+                                            <td>{{ $key + 1 }}</td>
+                                            <td>{{ $a->user->name }}</td>
+                                            <td>{{ $a->tipeMerek->nama_tipe }}</td>
+                                            <td>{{ $a->stok_awal }}</td>
+                                            <td>{{ $a->stok_masuk }}</td>
+                                            <td>{{ $a->stok_keluar }}</td>
+                                            <td>{{ $a->stok_total }}</td>
+                                            <td>{{ $a->tanggal_hari }}</td>
+                                            <td>
+                                                <div class="mb-3">
+                                                    <a href="{{ route('edit.laporan', [$a->id]) }}"
+                                                        class="btn icon icon-left btn-info"><i data-feather="edit"></i>
+                                                        Edit</a>
+                                                    <form action="{{ route('delete.laporan', [$a->id]) }}" method="POST"
+                                                        class="d-inline">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button type="submit" class="btn icon icon-left btn-danger"
+                                                            data-confirm-delete="true">
+                                                            <i data-feather="alert-circle"></i>
+                                                            Delete
+                                                        </button>
+                                                    </form>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    @endforeach
                                 </tbody>
                             </table>
                         </div>
