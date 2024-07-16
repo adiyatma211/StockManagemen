@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Merek\MerekController;
 use App\Http\Controllers\PagesController;
+use App\Http\Controllers\PagesLandingPageController;
 use App\Http\Controllers\Report\LaporanController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -17,10 +18,15 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+// ============================================WEB_COSTUMER=========================================================================================
 
-// Route::get('/', [PagesController::class, 'landingpage'])->name('homelanding');
+// Costumer Route
+Route::get('/userLP', [PagesLandingPageController::class, 'Userhome'])->name('Userhome');
 
 
+// ============================================WEB_COSTUMER_END=====================================================================================
+
+// landing Page Dashboard Admin
 Route::middleware('auth')->group(function () {
     Route::get('/', [PagesController::class, 'landingpage'])->name('homelanding');
     Route::get('/merek', [PagesController::class, 'merek'])->name('merek');

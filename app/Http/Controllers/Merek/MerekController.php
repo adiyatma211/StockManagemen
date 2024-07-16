@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Http\Controllers\Merek;
-
 use App\Http\Controllers\Controller;
 use App\Models\TipeMerek;
 use App\Models\Merek;
