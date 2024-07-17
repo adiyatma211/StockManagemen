@@ -1,8 +1,9 @@
 <?php
 
-use App\Http\Controllers\APIControllers\AuthApiController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\APIControllers\AuthApiController;
+use App\Http\Controllers\APIControllers\BarangApiController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,6 +20,7 @@ use Illuminate\Support\Facades\Route;
 Route::post('/login',[AuthApiController::class,'login']);
 Route::post('/logout',[AuthApiController::class,'logout']);
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+Route::middleware('auth:sanctum')->group(function (){
+    Route::get('/barang',[BarangApiController::class,'barang']);
+    Route::post('/barang/{id}',[BarangApiController::class,'barangDetail']);
 });
