@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Http\Controllers\APIControllers;
 use App\Models\Merek;
 use App\Models\TipeMerek;
@@ -58,7 +57,7 @@ class PaymentApiController extends Controller{
             ]);
         }
     }
-     /*
+    /*
     |--------------------------------------------------------------------------
     | Tampil Invoice
     |--------------------------------------------------------------------------

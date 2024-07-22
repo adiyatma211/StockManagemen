@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\APIControllers\AuthApiController;
 use App\Http\Controllers\APIControllers\BarangApiController;
+use App\Http\Controllers\APIControllers\PaymentApiController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,5 +23,7 @@ Route::post('/logout',[AuthApiController::class,'logout']);
 
 Route::middleware('auth:sanctum')->group(function (){
     Route::get('/barang',[BarangApiController::class,'barang']);
-    Route::post('/barang/{id}',[BarangApiController::class,'barangDetail']);
+    Route::get('/barang/{id}',[BarangApiController::class,'barangDetail']);
+    Route::post('/payment',[PaymentApiController::class,'payment']);
+    Route::get('/invoice',[PaymentApiController::class,'invoice']);
 });
